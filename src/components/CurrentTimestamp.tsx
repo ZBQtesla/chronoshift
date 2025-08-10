@@ -42,10 +42,11 @@ const TimestampDisplay: FC<TimestampDisplayProps> = ({ icon, label, value, onCop
 );
 
 export function CurrentTimestamp() {
-  const [now, setNow] = useState(new Date());
+  const [now, setNow] = useState<Date | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
+    setNow(new Date());
     const timer = setInterval(() => {
       setNow(new Date());
     }, 1000);
@@ -60,16 +61,16 @@ export function CurrentTimestamp() {
     });
   };
 
-  const unixTimestamp = Math.floor(now.getTime() / 1000);
-  const isoTimestamp = now.toISOString();
-  const humanTimestamp = now.toLocaleString(undefined, {
+  const unixTimestamp = now ? Math.floor(now.getTime() / 1000) : 'Loading...';
+  const isoTimestamp = now ? now.toISOString() : 'Loading...';
+  const humanTimestamp = now ? now.toLocaleString(undefined, {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
-  });
+  }) : 'Loading...';
 
   return (
     <Card className="overflow-hidden shadow-lg">
