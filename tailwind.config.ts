@@ -88,10 +88,15 @@ export default {
             height: '0',
           },
         },
+        'flash': {
+            '0%': { 'background-color': 'hsl(var(--primary) / 0.1)', 'border-color': 'hsl(var(--primary) / 0.5)' },
+            '100%': { 'background-color': 'hsl(var(--input))', 'border-color': 'hsl(var(--border))' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'flash': 'flash 0.7s ease-out',
       },
     },
   },
